@@ -1,5 +1,5 @@
 interface GreetingButtonsProps {
-  onGreeting: (type: 'hello' | 'goodbye') => void;
+  onGreeting: (type: 'hello' | 'goodbye' | 'party') => void;
   loading: boolean;
 }
 
@@ -19,6 +19,13 @@ export function GreetingButtons({ onGreeting, loading }: GreetingButtonsProps) {
         disabled={loading}
       >
         👋 Say Goodbye
+      </button>
+      <button
+        className="btn-party"
+        onClick={() => onGreeting('party')}
+        disabled={loading}
+      >
+        🎉 Let's Party
       </button>
     </div>
   );

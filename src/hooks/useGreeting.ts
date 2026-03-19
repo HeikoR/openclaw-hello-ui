@@ -1,11 +1,11 @@
 import { useState, useCallback } from 'react';
-import { fetchHello, fetchGoodbye } from '../api/index';
+import { fetchHello, fetchGoodbye, fetchParty } from '../api/index';
 
 interface UseGreetingReturn {
   message: string;
   loading: boolean;
   error: string | null;
-  fetchGreeting: (type: 'hello' | 'goodbye') => Promise<void>;
+  fetchGreeting: (type: 'hello' | 'goodbye' | 'party') => Promise<void>;
 }
 
 export function useGreeting(): UseGreetingReturn {
@@ -13,7 +13,7 @@ export function useGreeting(): UseGreetingReturn {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchGreeting = useCallback(async (type: 'hello' | 'goodbye') => {
+  const fetchGreeting = useCallback(async (type: 'hello' | 'goodbye' | 'party') => {
     setLoading(true);
     setError(null);
     setMessage('');
@@ -21,7 +21,9 @@ export function useGreeting(): UseGreetingReturn {
     try {
       const message = type === 'hello' 
         ? await fetchHello() 
-        : await fetchGoodbye();
+        : type === 'goodbye'
+        ? await fetchGoodbye()
+        : await fetchParty();
       setMessage(message);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');

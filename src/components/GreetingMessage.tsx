@@ -1,5 +1,5 @@
 interface GreetingMessageProps {
-  type: 'hello' | 'goodbye' | null;
+  type: 'hello' | 'goodbye' | 'party' | null;
   message: string;
   loading: boolean;
   error: string | null;
@@ -20,7 +20,7 @@ export function GreetingMessage({ type, message, loading, error }: GreetingMessa
 
   return (
     <div className={`message ${type}`}>
-      {type === 'hello' ? '👋' : '👋'} {message}
+      {type === 'party' ? '🎉' : '👋'} {message}
     </div>
   );
 }

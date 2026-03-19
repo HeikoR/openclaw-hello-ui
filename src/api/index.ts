@@ -13,3 +13,10 @@ export async function fetchGoodbye(): Promise<string> {
   const data = await res.json();
   return data.message as string;
 }
+
+export async function fetchParty(): Promise<string> {
+  const res = await fetch(`${API_BASE}/api/party`);
+  if (!res.ok) throw new Error('Failed to fetch party');
+  const data = await res.json();
+  return data.message as string;
+}

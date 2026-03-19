@@ -27,6 +27,12 @@ async function handleRequest(request) {
     });
   }
 
+  if (url.pathname === '/api/party') {
+    return new Response(JSON.stringify({ message: '🎉 Lass uns feiern!' }), {
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    });
+  }
+
   if (url.pathname === '/health') {
     return new Response(JSON.stringify({ status: 'ok' }), {
       headers: { 'Content-Type': 'application/json' },
