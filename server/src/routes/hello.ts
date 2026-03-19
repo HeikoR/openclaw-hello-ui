@@ -1,9 +1,13 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 
 const router = Router();
 
-router.get('/', (_req: Request, res: Response) => {
+router.get('/hello', (_req, res) => {
   res.json({ message: 'Hello World' });
+});
+
+router.get('/goodbye', (_req, res) => {
+  res.json({ message: 'Tschüss!' });
 });
 
 export default router;

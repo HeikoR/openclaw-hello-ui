@@ -1,73 +1,30 @@
 import { useState } from 'react';
-import { fetchHello, fetchGoodbye } from './api';
-
-type Message = string | null;
-type Loading = 'hello' | 'goodbye' | null;
-type Error = string | null;
+import { GreetingButtons } from './components/GreetingButtons';
+import { GreetingMessage } from './components/GreetingMessage';
+import { useGreeting } from './hooks/useGreeting';
 
 function App() {
-  const [message, setMessage] = useState<Message>(null);
-  const [loading, setLoading] = useState<Loading>(null);
-  const [error, setError] = useState<Error>(null);
+  const [greetingType, setGreetingType] = useState<'hello' | 'goodbye' | null>(null);
+  const { message, loading, error, fetchGreeting } = useGreeting();
 
-  const handleHello = async () => {
-    setLoading('hello');
-    setError(null);
-    setMessage(null);
-    try {
-      const msg = await fetchHello();
-      setMessage(msg);
-    } catch {
-      setError('Could not reach the server!');
-    } finally {
-      setLoading(null);
-    }
-  };
-
-  const handleGoodbye = async () => {
-    setLoading('goodbye');
-    setError(null);
-    setMessage(null);
-    try {
-      const msg = await fetchGoodbye();
-      setMessage(msg);
-    } catch {
-      setError('Could not reach the server!');
-    } finally {
-      setLoading(null);
-    }
+  const handleGreeting = async (type: 'hello' | 'goodbye') => {
+    setGreetingType(type);
+    await fetchGreeting(type);
   };
 
   return (
     <div className="container">
       <h1>🦁 Hello World App</h1>
-      <div className="buttons">
-        <button
-          className="btn-hello"
-          onClick={handleHello}
-          disabled={loading !== null}
-        >
-          {loading === 'hello' ? 'Loading...' : 'Say Hello'}
-        </button>
-        <button
-          className="btn-goodbye"
-          onClick={handleGoodbye}
-          disabled={loading !== null}
-        >
-          {loading === 'goodbye' ? 'Loading...' : 'Say Goodbye'}
-        </button>
-      </div>
-      <div className={`response ${error ? 'error' : ''}`}>
-        {loading ? (
-          <span className="loading">Loading...</span>
-        ) : error ? (
-          <span>{error}</span>
-        ) : message ? (
-          <span>{message}</span>
-        ) : (
-          <span style={{ color: '#9ca3af' }}>Press a button</span>
-        )}
-      </div>
+      <p className="subtitle">Powered by Seven & React</p>
+
+      <GreetingButtons onGreeting={handleGreeting} loading={loading} />
+
+      <GreetingMessage
+        type={greetingType}
+        message={message}
+        loading={loading}
+        error={error}
+      />
     </div>
   );
 }
