@@ -3,7 +3,7 @@ import { GreetingButtons } from './components/GreetingButtons';
 import { GreetingMessage } from './components/GreetingMessage';
 import { useGreeting } from './hooks/useGreeting';
 
-const APP_VERSION = '1.0.3';
+const APP_VERSION = '1.0.4';
 const API_URL = import.meta.env.VITE_API_URL || '(not set)';
 
 function App() {
