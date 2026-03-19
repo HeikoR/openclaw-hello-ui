@@ -1,0 +1,13 @@
+services:
+  - name: openclaw-hello-backend
+    type: web_service
+    runtime: node
+    region: oregon
+    plan: free
+    repo: https://github.com/HeikoR/openclaw-hello-ui
+    buildCommand: cd server && npm install && npm run build
+    startCommand: cd server && npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
