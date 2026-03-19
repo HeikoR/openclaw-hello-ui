@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_URL || '';
+const API_BASE = 'https://openclaw-hello-backend.hwrweb.workers.dev';
 
 export async function fetchHello(): Promise<string> {
   const res = await fetch(`${API_BASE}/api/hello`);

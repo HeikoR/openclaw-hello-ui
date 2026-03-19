@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { fetchHello, fetchGoodbye } from '../api/index';
 
 interface UseGreetingReturn {
   message: string;
@@ -18,10 +19,10 @@ export function useGreeting(): UseGreetingReturn {
     setMessage('');
 
     try {
-      const res = await fetch(`/api/${type}`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
-      setMessage(data.message);
+      const message = type === 'hello' 
+        ? await fetchHello() 
+        : await fetchGoodbye();
+      setMessage(message);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
