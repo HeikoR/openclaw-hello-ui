@@ -1,0 +1,4 @@
+name = "openclaw-hello-backend"
+main = "index.js"
+compatibility_date = "2024-01-01"
+account_id = "0dd0e84a7192be8957bad162bcdc792b"
