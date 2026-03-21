@@ -119,3 +119,42 @@ button:disabled {
   color: #888;
   font-style: italic;
 }
+
+.server-selector {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.server-selector label {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.server-selector select {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #eee;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.server-selector select:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.server-selector select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3);
+}
+
+.server-selector select option {
+  background: #1a1a2e;
+  color: #eee;
+}
